@@ -1,6 +1,6 @@
 ## Intro
 
-Pomodoro technique - but C4 bomb!
+Pomodoro technique - but C4 BOMB!
 
 Better get your work done before everything goes KABOOM! 💣💥
 
