@@ -1,0 +1,2 @@
+export const DEACTIVATED_BOMB_COLORS = ["#636363", "#222222", "#525252"];
+export const ACTIVATED_BOMB_COLORS = ["#460808", "#FF0000", "#FF3534"];
