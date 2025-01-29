@@ -33,7 +33,7 @@ export const Display = ({
     alignItems: "center",
     height: "fit-content",
     width: "fit-content",
-    padding: "6px",
+    padding: "3px",
     ...style,
   } as React.CSSProperties;
 
