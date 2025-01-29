@@ -10,12 +10,15 @@ import Image from "next/image";
 export default function Home() {
   const [bombIsPlanted, setBombIsPlanted] = useState(false);
   const [bombExploded, setBombExploded] = useState(false);
-  const [minutes, setMinutes] = useState(10);
+  const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  // sounds
-  const [playLetsGo, setPlayLetsGo] = useSound("/letsgo.mp3");
+  // SOUNDS
+  const [playLetsGo] = useSound("/sounds/letsgo.mp3");
+  const [playExplosion] = useSound("/sounds/explosion.mp3");
+  const [playTicking] = useSound("/sounds/tick.mp3");
 
+  // TIMER
   useEffect(() => {
     if (bombIsPlanted) {
       const timer = setInterval(() => {
@@ -39,13 +42,29 @@ export default function Home() {
     }
   }, [bombIsPlanted, minutes, seconds]);
 
+  // BOMB EXPLOSION
   useEffect(() => {
     if (bombExploded) {
+      playExplosion();
       setTimeout(() => {
         setBombExploded(false);
       }, 1000);
     }
-  }, [bombExploded]);
+  }, [bombExploded, playExplosion]);
+
+  // TICKING SOUND
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (seconds < 10 && minutes === 0) {
+      timer = setTimeout(() => {
+        playTicking();
+      }, 1000);
+    }
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [seconds, minutes, playTicking]);
 
   function plantBomb() {
     if (seconds > 0) {
@@ -79,6 +98,7 @@ export default function Home() {
             onSetMinutes={(m) => setMinutes(m)}
             onSetSeconds={(s) => setSeconds(s)}
             onActivate={plantBomb}
+            isActive={bombIsPlanted}
           />
         )}
       </main>

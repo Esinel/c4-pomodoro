@@ -7,8 +7,11 @@ export function Bomb({
   onSetMinutes,
   onSetSeconds,
   onActivate,
+  isActive,
 }: BombProps) {
   function handleSetMinutes() {
+    if (isActive) return;
+
     const minutes = Number(prompt("Set minutes (0-99)"));
 
     if (isNaN(minutes) || minutes < 0 || minutes > 99) {
@@ -20,6 +23,8 @@ export function Bomb({
   }
 
   function handleSetSeconds() {
+    if (isActive) return;
+
     const seconds = Number(prompt("Set minutes (0-59)"));
 
     if (isNaN(seconds) || seconds < 0 || seconds > 59) {
@@ -75,4 +80,5 @@ type BombProps = {
   onSetMinutes: (m: number) => void;
   onSetSeconds: (s: number) => void;
   onActivate: () => void;
+  isActive: boolean;
 };
