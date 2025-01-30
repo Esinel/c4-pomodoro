@@ -67,7 +67,7 @@ export default function Home() {
   }, [seconds, minutes, playTicking]);
 
   function plantBomb() {
-    if (seconds > 0) {
+    if (seconds > 0 || minutes > 0) {
       playLetsGo();
       setBombIsPlanted(true);
     }

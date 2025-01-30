@@ -66,7 +66,7 @@ export function Bomb({
         <div
           className="absolute z-4"
           style={{ left: "34%", top: "36%", width: "40px", height: "40px" }}
-          onClick={onActivate}
+          onClick={!isActive ? onActivate : undefined}
         />
       </div>
     </div>
