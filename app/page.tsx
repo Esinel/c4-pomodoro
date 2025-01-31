@@ -58,7 +58,7 @@ export default function Home() {
   // TICKING SOUND AT THE END
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (seconds < 10 && minutes === 0) {
+    if (bombIsPlanted && seconds < 10 && minutes === 0) {
       timer = setTimeout(() => {
         playTicking();
       }, 1000);
@@ -67,7 +67,7 @@ export default function Home() {
     return () => {
       clearTimeout(timer);
     };
-  }, [seconds, minutes, playTicking]);
+  }, [seconds, minutes, playTicking, bombIsPlanted]);
 
   // TICKING SOUND 5 MINUTE
   useEffect(() => {
