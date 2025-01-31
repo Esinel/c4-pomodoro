@@ -69,6 +69,16 @@ export default function Home() {
     };
   }, [seconds, minutes, playTicking]);
 
+  useEffect(() => {
+    const fiveMinuteInterval = setInterval(() => {
+      playTicking();
+    }, 300000);
+
+    return () => {
+      clearInterval(fiveMinuteInterval);
+    };
+  }, [playTicking]);
+
   function plantBomb() {
     if (seconds > 0 || minutes > 0) {
       playLetsGo();
