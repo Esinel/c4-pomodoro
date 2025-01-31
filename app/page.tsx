@@ -55,7 +55,7 @@ export default function Home() {
     }
   }, [bombExploded, playExplosion]);
 
-  // TICKING SOUND
+  // TICKING SOUND AT THE END
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (seconds < 10 && minutes === 0) {
@@ -69,15 +69,20 @@ export default function Home() {
     };
   }, [seconds, minutes, playTicking]);
 
+  // TICKING SOUND 5 MINUTE
   useEffect(() => {
-    const fiveMinuteInterval = setInterval(() => {
-      playTicking();
-    }, 300000);
+    let fiveMinuteInterval: NodeJS.Timeout;
+
+    if (bombIsPlanted) {
+      fiveMinuteInterval = setInterval(() => {
+        playTicking();
+      }, 300000);
+    }
 
     return () => {
       clearInterval(fiveMinuteInterval);
     };
-  }, [playTicking]);
+  }, [playTicking, bombIsPlanted]);
 
   function plantBomb() {
     if (seconds > 0 || minutes > 0) {
