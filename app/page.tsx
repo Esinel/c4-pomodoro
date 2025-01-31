@@ -6,12 +6,15 @@ import { ACTIVATED_BOMB_COLORS, DEACTIVATED_BOMB_COLORS } from "./constants";
 import useSound from "use-sound";
 import { Bomb } from "./components/bomb/Bomb";
 import Image from "next/image";
+import { useAudioManager } from "./components/audio-manager/AudioManager";
 
 export default function Home() {
   const [bombIsPlanted, setBombIsPlanted] = useState(false);
   const [bombExploded, setBombExploded] = useState(false);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  // eslint-disable-next-line
+  const { initialized } = useAudioManager();
 
   // SOUNDS
   const [playLetsGo] = useSound("/sounds/letsgo.mp3");
