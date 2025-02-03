@@ -36,39 +36,32 @@ export function Bomb({
   }
 
   return (
-    <div className="absolute z-2 flex items-center justify-center w-full h-full">
-      <div className="relative w-full max-w-lg">
-        <Image
-          src="/dynamite-no-bg.png"
-          width="600"
-          height="600"
-          alt="c4-bomb"
-        />
+    <div className="relative w-full max-w-lg">
+      <Image src="/dynamite-no-bg.png" width="600" height="600" alt="c4-bomb" />
 
-        <div
-          className="absolute z-3 flex"
-          style={{
-            left: "46%",
-            top: "43%",
-            background: "black",
-          }}
-        >
-          {/* minutes */}
-          <div onClick={handleSetMinutes}>
-            <Display value={minutes} count={2} height={30} />
-          </div>
-          {/* seconds */}
-          <div onClick={handleSetSeconds}>
-            <Display value={seconds} count={2} height={30} />
-          </div>
+      <div
+        className="absolute z-3 flex"
+        style={{
+          left: "46%",
+          top: "43%",
+          background: "black",
+        }}
+      >
+        {/* minutes */}
+        <div onClick={handleSetMinutes}>
+          <Display value={minutes} count={2} height={30} />
         </div>
-
-        <div
-          className="absolute z-4"
-          style={{ left: "34%", top: "36%", width: "40px", height: "40px" }}
-          onClick={!isActive ? onActivate : undefined}
-        />
+        {/* seconds */}
+        <div onClick={handleSetSeconds}>
+          <Display value={seconds} count={2} height={30} />
+        </div>
       </div>
+
+      <div
+        className="absolute z-4"
+        style={{ left: "34%", top: "36%", width: "40px", height: "40px" }}
+        onClick={!isActive ? onActivate : undefined}
+      />
     </div>
   );
 }

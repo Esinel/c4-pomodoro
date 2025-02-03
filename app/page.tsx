@@ -7,6 +7,7 @@ import useSound from "use-sound";
 import { Bomb } from "./components/bomb/Bomb";
 import Image from "next/image";
 import { useAudioManager } from "./components/audio-manager/AudioManager";
+import { TodoDrawer } from "./components/todo-drawer/TodoDrawer";
 
 export default function Home() {
   const [bombIsPlanted, setBombIsPlanted] = useState(false);
@@ -101,24 +102,30 @@ export default function Home() {
       <main>
         <LetterGlitch glitchSpeed={glitchSpeed} glitchColors={glitchColors} />
 
-        {bombExploded ? (
-          <Image
-            src="/explosion.webp"
-            width="600"
-            height="600"
-            alt="explosion"
-            className="z-2 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center"
-          />
-        ) : (
-          <Bomb
-            minutes={minutes}
-            seconds={seconds}
-            onSetMinutes={(m) => setMinutes(m)}
-            onSetSeconds={(s) => setSeconds(s)}
-            onActivate={plantBomb}
-            isActive={bombIsPlanted}
-          />
-        )}
+        <div className="absolute z-2 flex items-center justify-center w-full h-full">
+          {bombExploded ? (
+            <Image
+              src="/explosion.webp"
+              width="600"
+              height="600"
+              alt="explosion"
+              className="z-2 absolute flex justify-center items-center"
+            />
+          ) : (
+            <Bomb
+              minutes={minutes}
+              seconds={seconds}
+              onSetMinutes={(m) => setMinutes(m)}
+              onSetSeconds={(s) => setSeconds(s)}
+              onActivate={plantBomb}
+              isActive={bombIsPlanted}
+            />
+          )}
+
+          <div className="absolute z-4 m-auto bottom-5 left-0 right-0 w-200 w-[100px]">
+            <TodoDrawer />
+          </div>
+        </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         {/* About */}
